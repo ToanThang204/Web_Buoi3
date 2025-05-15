@@ -1,0 +1,291 @@
+﻿@{
+    ViewBag.Title = "Kết quả đăng ký";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .result-container {
+        max-width: 700px;
+        margin: 50px auto;
+        padding: 0;
+        background: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 0 25px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .result-header {
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        color: white;
+        padding: 40px;
+        text-align: center;
+    }
+
+        .result-header h2 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+    .success-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+    }
+
+    .result-body {
+        padding: 40px;
+    }
+
+    .info-row {
+        display: flex;
+        padding: 20px;
+        border-bottom: 1px solid #e0e0e0;
+        transition: background 0.3s ease;
+    }
+
+        .info-row:hover {
+            background: #f8f9fa;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+    .info-label {
+        flex: 0 0 200px;
+        font-weight: 600;
+        color: #555;
+        display: flex;
+        align-items: center;
+    }
+
+    .info-value {
+        flex: 1;
+        color: #333;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+    }
+
+    .major-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .major-tag {
+        background: #e3f2fd;
+        color: #1565c0;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-weight: 500;
+        border: 2px solid #bbdefb;
+    }
+
+    .score-value {
+        font-size: 24px;
+        font-weight: 700;
+        color: #2e7d32;
+    }
+
+    .count-value {
+        background: #007bff;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: 40px;
+        padding-top: 30px;
+        border-top: 2px solid #e0e0e0;
+        justify-content: center;
+    }
+
+    .btn-back {
+        padding: 12px 30px;
+        background: #6c757d;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+        .btn-back:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108,117,125,0.3);
+            text-decoration: none;
+            color: white;
+        }
+
+    .btn-print {
+        padding: 12px 30px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+        .btn-print:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40,167,69,0.3);
+        }
+
+    .icon-label {
+        margin-right: 10px;
+        font-size: 20px;
+    }
+
+    @@media print {
+        .action-buttons, .btn-print {
+            display: none;
+        }
+
+        .result-container {
+            box-shadow: none;
+            margin: 0;
+        }
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .result-container {
+        animation: fadeIn 0.6s ease;
+    }
+
+    .info-row {
+        animation: fadeIn 0.8s ease;
+        animation-fill-mode: both;
+    }
+
+        .info-row:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .info-row:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .info-row:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .info-row:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+</style>
+
+<div class="result-container">
+    <div class="result-header">
+        <div class="success-icon">✅</div>
+        <h2>Đăng Ký Thành Công!</h2>
+        <p>Thông tin đăng ký chuyên ngành của bạn đã được ghi nhận</p>
+    </div>
+
+    <div class="result-body">
+        <div class="info-row">
+            <div class="info-label">
+                <span class="icon-label">👤</span> Họ và tên:
+            </div>
+            <div class="info-value">@ViewBag.HoTen</div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-label">
+                <span class="icon-label">📊</span> Điểm trung bình:
+            </div>
+            <div class="info-value">
+                <span class="score-value">@ViewBag.DiemTB</span>
+            </div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-label">
+                <span class="icon-label">🎯</span> Chuyên ngành:
+            </div>
+            <div class="info-value">
+                <span class="major-tag">@ViewBag.ChuyenNganh</span>
+            </div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-label">
+                <span class="icon-label">📋</span> Mã chuyên ngành:
+            </div>
+            <div class="info-value">
+                <span class="count-value">@ViewBag.MaChuyenNganh</span>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="@Url.Action("Index", "Student")" class="btn-back">
+                <span>←</span> Quay lại đăng ký
+            </a>
+            <button onclick="window.print()" class="btn-print">
+                <span>🖨️</span> In kết quả
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Hiệu ứng confetti khi load trang
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tạo hiệu ứng pháo hoa đơn giản
+        const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f8b500', '#ff5e78'];
+        const container = document.querySelector('.result-header');
+
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'absolute';
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.opacity = '0';
+            confetti.style.transition = 'all 2s ease-out';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.top = '0';
+
+            container.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.style.opacity = '1';
+                confetti.style.transform = `translateY(${Math.random() * 200}px) rotate(${Math.random() * 360}deg)`;
+            }, i * 20);
+
+            setTimeout(() => {
+                confetti.style.opacity = '0';
+            }, 1500);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 2500);
+        }
+    });
+</script>
